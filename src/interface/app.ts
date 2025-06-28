@@ -9,9 +9,15 @@ interface Info {
   selectedAt: number; // timestamp
   isSelected: boolean; // Optional, used for selection in UI
 }
-export interface Company extends Info { }
-export interface Employee extends Info { }
-export interface Table extends Info { }
+export interface Company extends Info {
+  ts?: number;
+}
+export interface Employee extends Info {
+  ts?: number;
+}
+export interface Table extends Info {
+  ts?: number;
+}
 
 export interface PayslipData {
   companies: Company[];

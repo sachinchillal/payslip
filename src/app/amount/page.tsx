@@ -113,7 +113,7 @@ export default function CompanyDetailsEditor() {
     showStatus(`Editing Table #${index + 1}.`, "success");
     window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top for better UX
   };
-  const handleDuplicateDetail = (c: Company, index: number) => {
+  const handleDuplicateDetail = (c: Company) => {
     const res = saveOrUpdateTable(c.value, c.label || '', null);
     showStatus(res.message, res.error ? 'error' : 'success');
     if (!res.error) {
@@ -280,7 +280,7 @@ export default function CompanyDetailsEditor() {
                       <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{new Date(c.updatedAt).toLocaleString()}</td>
                       <td className="px-4 py-3 whitespace-nowrap text-sm font-medium">
                         <button
-                          onClick={(e) => { e.stopPropagation(); handleDuplicateDetail(c, index); }}
+                          onClick={(e) => { e.stopPropagation(); handleDuplicateDetail(c); }}
                           className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300 mr-2 sm:mr-3 transition-colors px-2 py-1 rounded hover:bg-indigo-100 dark:hover:bg-indigo-800/50"
                           title="Duplicate this detail"
                         >

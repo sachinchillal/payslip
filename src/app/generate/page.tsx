@@ -1,13 +1,12 @@
 "use client";
 
-import { Company, Employee, INIT_PAYSLIP_DATA, Table } from "@/interface/app";
+import { Company, Employee, Table } from "@/interface/app";
 import { getPayslipData } from "@/store/getters";
 import { useEffect, useState } from "react";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm'
 
 export default function GenerateSlip() {
-  const [p, setP] = useState(INIT_PAYSLIP_DATA);
   const [company, setCompany] = useState<Company | null>(null); // For company name
   const [employee, setEmployee] = useState<Employee | null>(null); // For employee name
   const [selectedTables, setSelectedTables] = useState<Table[]>([]); // For populating the table
@@ -19,7 +18,6 @@ export default function GenerateSlip() {
     setSelectedTables(p.tables.filter(t => t.isSelected).sort((a, b) => a.selectedAt - b.selectedAt));
     const employee = p.employees.find(e => e.isSelected);
     setEmployee(employee || null);
-    setP(p);
   }
 
 

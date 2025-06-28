@@ -1,8 +1,9 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useTheme } from 'next-themes';
 import { Sun, Moon, Laptop, ChevronDown, Check, Menu } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface NavLink {
   href: string;
@@ -18,14 +19,8 @@ const navLinks: NavLink[] = [
 ];
 
 const Header: React.FC = () => {
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme, resolvedTheme, themes } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const [isThemeDropdownOpen, setIsThemeDropdownOpen] = useState(false);
-
-  // useEffect only runs on the client, so now we can safely show the UI
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
 
   const currentThemeIcon = () => {
@@ -48,7 +43,7 @@ const Header: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           {/* Left Side: Logo and Title */}
           <div className="flex items-center">
-            <a href="/" className="flex items-center group">
+            <Link href="/" className="flex items-center group">
               {/* Logo Placeholder */}
               <div className="flex-shrink-0 w-10 h-10 bg-indigo-500 dark:bg-indigo-600 rounded-full mr-3 group-hover:opacity-80 transition-opacity">
                 {/* You can put an SVG or img tag here */}
@@ -57,16 +52,16 @@ const Header: React.FC = () => {
               <h1 className="font-bold text-xl group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                 Payslip Generator
               </h1>
-            </a>
+            </Link>
           </div>
 
           {/* Right Side: Nav Links and Theme Switcher */}
           <div className="flex items-center space-x-6">
             <nav className="hidden md:flex space-x-5">
               {navLinks.map((link) => (
-                <a href={link.href} key={link.label} className="text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                <Link href={link.href} key={link.label} className="text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
                   {link.label}
-                </a>
+                </Link>
               ))}
             </nav>
 
