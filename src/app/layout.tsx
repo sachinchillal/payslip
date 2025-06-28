@@ -1,6 +1,9 @@
+"use client";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
+import CustomThemeProvider from "@/provider/CustomThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,11 +15,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Payslip Generator",
-  keywords: ["Payslip", "Generator", "Payroll", "Salary"],
-  description: "Generate payslips on the go with in browser.",
-};
+// export const metadata: Metadata = {
+//   title: "Payslip Generator",
+//   keywords: ["Payslip", "Generator", "Payroll", "Salary"],
+//   description: "Generate payslips on the go with in browser.",
+// };
 
 export default function RootLayout({
   children,
@@ -25,10 +28,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body>
+        <CustomThemeProvider>
+          <Header />
+          {children}
+        </CustomThemeProvider>
       </body>
     </html>
   );
